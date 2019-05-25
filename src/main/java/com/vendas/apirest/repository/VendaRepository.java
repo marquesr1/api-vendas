@@ -6,4 +6,6 @@ import com.vendas.apirest.model.Venda;
 
 public interface VendaRepository extends JpaRepository<Venda, Long>{
 
+	Venda findById(long id);
+	
 }

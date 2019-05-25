@@ -3,6 +3,7 @@ package com.vendas.apirest.model;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.sql.Date;
+import java.util.Calendar;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -22,7 +23,7 @@ public class Venda implements Serializable{
 	
 	private BigDecimal valor;
 	
-	private Date data;
+	private Date data = new java.sql.Date(Calendar.getInstance().getTime().getTime());
 
 	public long getId() {
 		return id;
