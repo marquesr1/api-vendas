@@ -1,5 +1,6 @@
 package com.vendas.apirest.resources;
 
+import java.sql.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,6 +31,16 @@ public class VendaResource {
 	@GetMapping("/vendas/{id}")
 	public Venda listaVenda(@PathVariable(value="id") long id){
 		return vendaRepository.findById(id);
+	}
+	
+	@GetMapping("/vendas/vendedor/{id}")
+	public List<Venda> listaVendaPorVendedor(@PathVariable(value="id") long id){
+		return vendaRepository.findByVendedor(id);
+	}
+	
+	@GetMapping("/vendas/vendedor/{id}/{date1}_{date2}")
+	public List<Venda> listaVendaPorVendedorPeriodo(@PathVariable(value="id") long id, @PathVariable(value="date1") Date date1, @PathVariable(value="date2") Date date2){
+		return vendaRepository.findByVendedor(id, date1, date2);
 	}
 	
 	@PostMapping("/vendas")
