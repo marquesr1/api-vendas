@@ -5,10 +5,12 @@ import java.math.BigDecimal;
 import java.sql.Date;
 import java.util.Calendar;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -21,10 +23,14 @@ public class Venda implements Serializable{
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private long id;
 	
+	private Date data = new java.sql.Date(Calendar.getInstance().getTime().getTime());
+	
+	@Column(nullable = false)
 	private BigDecimal valor;
 	
-	private Date data = new java.sql.Date(Calendar.getInstance().getTime().getTime());
-
+	@ManyToOne(optional = false)
+	private Vendedor vendedor;
+	
 	public long getId() {
 		return id;
 	}
@@ -47,6 +53,14 @@ public class Venda implements Serializable{
 
 	public void setData(Date data) {
 		this.data = data;
+	}
+
+	public Vendedor getVendedor() {
+		return vendedor;
+	}
+
+	public void setVendedor(Vendedor vendedor) {
+		this.vendedor = vendedor;
 	}
 	
 }
